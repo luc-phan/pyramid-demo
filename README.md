@@ -67,3 +67,11 @@ sqlite> .mode column
 sqlite> select * from todos;
 sqlite> .quit
 ```
+
+### Update database
+
+```
+$ vim models.py
+$ alembic revision --autogenerate -m "Message"
+$ alembic upgrade head
+```
