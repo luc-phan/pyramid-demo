@@ -1,15 +1,15 @@
 from typing import Union
 
+from sqlalchemy import create_engine
 from fastapi import FastAPI
 
+from settings import DATABASE_URL
+from sqlalchemy.orm import sessionmaker
+from crud import Crud
+from models import Todo
+
 app = FastAPI()
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+todos = Crud(app, "/todos/", Session, Todo)
