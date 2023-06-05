@@ -10,6 +10,8 @@ fastapi = "^0.95.2"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
 alembic = "^1.11.1"
 pydantic-sqlalchemy = "^0.0.9"
+pyramid-jinja2 = "^2.10"
+requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 

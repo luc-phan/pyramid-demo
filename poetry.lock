@@ -33,6 +33,22 @@ test = ["anyio", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "psutil (>=5.9)
 trio = ["trio (<0.22)"]
 
 [[package]]
+name = "certifi"
+version = "2023.5.7"
+description = "Python package for providing Mozilla's CA Bundle."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "charset-normalizer"
+version = "3.1.0"
+description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
+category = "main"
+optional = false
+python-versions = ">=3.7.0"
+
+[[package]]
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
@@ -112,12 +128,38 @@ python-versions = ">=3.5.0"
 test = ["Cython (>=0.29.24,<0.30.0)"]
 
 [[package]]
+name = "hupper"
+version = "1.12"
+description = "Integrated process monitor for developing and reloading daemons."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["watchdog", "setuptools", "sphinx", "pylons-sphinx-themes"]
+testing = ["watchdog", "pytest", "pytest-cov", "mock"]
+
+[[package]]
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[[package]]
+name = "jinja2"
+version = "3.1.2"
+description = "A very fast and expressive template engine."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=2.0"
+
+[package.extras]
+i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "mako"
@@ -142,6 +184,46 @@ description = "Safely add untrusted strings to HTML/XML markup."
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "pastedeploy"
+version = "3.0.1"
+description = "Load, configure, and compose WSGI applications and servers"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes"]
+paste = ["paste"]
+testing = ["paste", "pytest", "pytest-cov"]
+
+[[package]]
+name = "plaster"
+version = "1.1.2"
+description = "A loader interface around multiple config file formats."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["sphinx", "pylons-sphinx-themes"]
+testing = ["pytest", "pytest-cov"]
+
+[[package]]
+name = "plaster-pastedeploy"
+version = "1.0.1"
+description = "A loader implementing the PasteDeploy syntax to be used by plaster."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+PasteDeploy = ">=2.0"
+plaster = ">=0.5"
+
+[package.extras]
+testing = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "pydantic"
@@ -174,6 +256,46 @@ sqlalchemy = ">=1.3.16,<2.0.0"
 dev = ["jupyter[dev] (>=1.0.0,<2.0.0)", "autoflake[dev] (>=1.3.1,<2.0.0)", "flake8[dev] (>=3.7.9,<4.0.0)"]
 
 [[package]]
+name = "pyramid"
+version = "2.0.1"
+description = "The Pyramid Web Framework, a Pylons project"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+hupper = ">=1.5"
+plaster = "*"
+plaster-pastedeploy = "*"
+translationstring = ">=0.4"
+venusian = ">=1.0"
+webob = ">=1.8.3"
+"zope.deprecation" = ">=3.5.0"
+"zope.interface" = ">=3.8.0"
+
+[package.extras]
+docs = ["Sphinx (>=3.0.0)", "docutils", "pylons-sphinx-themes (>=1.0.8)", "pylons-sphinx-latesturl", "repoze.sphinx.autointerface", "sphinx-copybutton", "sphinxcontrib-autoprogram"]
+testing = ["webtest (>=1.3.1)", "zope.component (>=4.0)", "coverage", "pytest (>=5.4.2)", "pytest-cov"]
+
+[[package]]
+name = "pyramid-jinja2"
+version = "2.10"
+description = "Jinja2 template bindings for the Pyramid web framework"
+category = "main"
+optional = false
+python-versions = ">=3.7.0"
+
+[package.dependencies]
+jinja2 = ">=2.5.0,<2.11.0 || >2.11.0,<2.11.1 || >2.11.1,<2.11.2 || >2.11.2"
+markupsafe = "*"
+pyramid = ">=1.3.0"
+"zope.deprecation" = "*"
+
+[package.extras]
+docs = ["pylons-sphinx-themes (>=0.3)", "sphinx (>=1.7.5)"]
+testing = ["webtest", "coverage", "pytest (>=5.4.2)", "pytest-cov"]
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -191,6 +313,24 @@ description = "YAML parser and emitter for Python"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "requests"
+version = "2.31.0"
+description = "Python HTTP for Humans."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+certifi = ">=2017.4.17"
+charset-normalizer = ">=2,<4"
+idna = ">=2.5,<4"
+urllib3 = ">=1.21.1,<3"
+
+[package.extras]
+socks = ["PySocks (>=1.5.6,!=1.5.7)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "sniffio"
@@ -247,12 +387,37 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart", "pyyaml"]
 
 [[package]]
+name = "translationstring"
+version = "1.4"
+description = "Utility library for i18n relied on by various Repoze and Pyramid packages"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+docs = ["Sphinx (>=1.3.1)", "docutils", "pylons-sphinx-themes"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.6.3"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "urllib3"
+version = "2.0.2"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
+secure = ["certifi", "cryptography (>=1.9)", "idna (>=2.0.0)", "pyopenssl (>=17.1.0)", "urllib3-secure-extra"]
+socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
+zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "uvicorn"
@@ -290,6 +455,18 @@ docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sp
 test = ["flake8 (>=3.9.2,<3.10.0)", "psutil", "pycodestyle (>=2.7.0,<2.8.0)", "pyOpenSSL (>=22.0.0,<22.1.0)", "mypy (>=0.800)", "Cython (>=0.29.32,<0.30.0)", "aiohttp"]
 
 [[package]]
+name = "venusian"
+version = "3.0.0"
+description = "A library for deferring decorator actions"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+docs = ["sphinx", "repoze.sphinx.autointerface"]
+testing = ["pytest", "pytest-cov", "coverage"]
+
+[[package]]
 name = "watchfiles"
 version = "0.19.0"
 description = "Simple, modern and high performance file watching and code reload in python."
@@ -301,6 +478,18 @@ python-versions = ">=3.7"
 anyio = ">=3.0.0"
 
 [[package]]
+name = "webob"
+version = "1.8.7"
+description = "WSGI request and response object"
+category = "main"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
+
+[package.extras]
+docs = ["Sphinx (>=1.7.5)", "pylons-sphinx-themes"]
+testing = ["pytest (>=3.1.0)", "coverage", "pytest-cov", "pytest-xdist"]
+
+[[package]]
 name = "websockets"
 version = "11.0.3"
 description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
@@ -308,14 +497,41 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[[package]]
+name = "zope.deprecation"
+version = "5.0"
+description = "Zope Deprecation Infrastructure"
+category = "main"
+optional = false
+python-versions = ">= 3.7"
+
+[package.extras]
+docs = ["sphinx"]
+test = ["zope.testrunner"]
+
+[[package]]
+name = "zope.interface"
+version = "6.0"
+description = "Interfaces for Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["sphinx", "repoze.sphinx.autointerface"]
+test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
+testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6414f0d6fdb4fb804a52eff79b2bd157bba1605dc469b42ab49396de2dc99c30"
+content-hash = "f39f89864716d52817e8b1b600d39a85a65f15925f38af42ad14aa6e8539b5e8"
 
 [metadata.files]
 alembic = []
 anyio = []
+certifi = []
+charset-normalizer = []
 click = []
 colorama = []
 exceptiongroup = []
@@ -323,18 +539,32 @@ fastapi = []
 greenlet = []
 h11 = []
 httptools = []
+hupper = []
 idna = []
+jinja2 = []
 mako = []
 markupsafe = []
+pastedeploy = []
+plaster = []
+plaster-pastedeploy = []
 pydantic = []
 pydantic-sqlalchemy = []
+pyramid = []
+pyramid-jinja2 = []
 python-dotenv = []
 pyyaml = []
+requests = []
 sniffio = []
 sqlalchemy = []
 starlette = []
+translationstring = []
 typing-extensions = []
+urllib3 = []
 uvicorn = []
 uvloop = []
+venusian = []
 watchfiles = []
+webob = []
 websockets = []
+"zope.deprecation" = []
+"zope.interface" = []
