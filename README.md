@@ -28,10 +28,23 @@ Activate virtual environment:
 $ poetry shell
 ```
 
+Configure application:
+
+```
+$ cp .env.example .env
+$ vim .env
+```
+
+Create database:
+
+```
+$ alembic upgrade head
+```
+
 Start API server:
 
 ```
-$ uvicorn api:app --reload
+$ uvicorn api:app --reload --port 8001
 ```
 
 Exit virtual environment:
