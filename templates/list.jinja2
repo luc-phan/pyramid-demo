@@ -5,12 +5,16 @@
         <title>TODO list</title>
     </head>
     <body>
-        <h1>TODO</h1>
+        <h1>TODO list</h1>
 
         <ul>
             {% for todo in todos %}
             <li>{{ todo.title }}</li>
             {% endfor %}
         </ul>
+
+        <p>
+            <a href="{{ request.route_url('new') }}">New</a>
+        </p>
     </body>
 </html>
