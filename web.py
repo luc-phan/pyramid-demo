@@ -1,9 +1,13 @@
+from urllib.parse import urljoin
+
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.view import view_config
 import requests
 
-from settings import WEB_PORT
+from settings import WEB_PORT, API_URL
+
+TODO_API_URL = urljoin(API_URL + "/", "todos")
 
 
 @view_config(
@@ -11,7 +15,8 @@ from settings import WEB_PORT
     renderer='templates/list.jinja2'
 )
 def list_(request):
-    return {}
+    response = requests.get(TODO_API_URL)
+    return dict(todos=response.json())
 
 
 if __name__ == '__main__':
