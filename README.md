@@ -16,6 +16,13 @@ This is a demo using:
 Usage
 -----
 
+Configure application:
+
+```
+$ cp .env.example .env
+$ vim .env
+```
+
 Install dependencies:
 
 ```
@@ -28,13 +35,6 @@ Activate virtual environment:
 $ poetry shell
 ```
 
-Configure application:
-
-```
-$ cp .env.example .env
-$ vim .env
-```
-
 Create database:
 
 ```
@@ -44,7 +44,14 @@ $ alembic upgrade head
 Start API server:
 
 ```
-$ uvicorn api:app --reload --port 8001
+$ python api.py
+```
+
+In another terminal, start web server:
+
+```
+$ poetry shell
+$ python web.py
 ```
 
 Exit virtual environment:
