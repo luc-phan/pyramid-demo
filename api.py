@@ -1,5 +1,3 @@
-from typing import Union
-
 from sqlalchemy import create_engine
 from fastapi import FastAPI
 import uvicorn
