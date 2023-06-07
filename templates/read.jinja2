@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>TODO details</title>
+        <style>
+            form {
+                display: table;
+            }
+
+            form div {
+                display: table-row;
+            }
+
+            label, input {
+                display: table-cell;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>TODO details</h1>
+
+        <form method="POST">
+            <div>
+                <label for="id">ID:</label>
+                <input type="text" name="id" id="id" value="{{ id }}" disabled/>
+            </div>
+
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" value="{{ title }}"/>
+            </div>
+
+            <div>
+                <label for="created_at">Created at:</label>
+                <input type="text" name="created_at" id="created_at" value="{{ created_at }}"/>
+            </div>
+
+            <div>
+                <label for="done">Done:</label>
+                <input type="checkbox" name="done" id="done" {% if done %}checked{% endif %}/>
+            </div>
+
+            <p>
+                <input type="submit" name="update" value="Update"/>
+                <input type="submit" name="delete" value="Delete"/>
+            </p>
+        </form>
+
+        <p>
+            <a href="{{ request.route_url('list') }}">Back</a>
+        </p>
+    </body>
+</html>
