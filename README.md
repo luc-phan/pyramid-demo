@@ -1,6 +1,8 @@
 pyramid-demo
 ============
 
+![Screenshot](images/todo-list.png)
+
 Description
 -----------
 
