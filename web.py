@@ -37,7 +37,7 @@ def new(request):
 def create(request):
     title = request.params['title']
     requests.post(TODO_API_URL, json=dict(title=title), timeout=10)
-    url = request.route_url('list') 
+    url = request.route_url('list')
     return HTTPFound(location=url)
 
 
@@ -59,6 +59,7 @@ def read(request):
 )
 def update(request):
     id_ = request.matchdict["id"]
+    url = urljoin(TODO_API_URL + "/", id_)
 
     if 'update' in request.params:
 
@@ -66,15 +67,17 @@ def update(request):
         created_at = request.params['created_at']
         done = request.params.get('done', False)
 
-        url = urljoin(TODO_API_URL + "/", id_)
-        response = requests.put(url, json=dict(title=title, created_at=created_at, done=done), timeout=10)
+        response = requests.put(url, json=dict(title=title, created_at=created_at, done=done),
+                                timeout=10)
 
-        redirect_url = request.route_url('details', id=id_) 
+        redirect_url = request.route_url('details', id=id_)
         return HTTPFound(location=redirect_url)
 
     elif 'delete' in request.params:
 
-        return Response("delete = Not implemented yet")
+        response = requests.delete(url, timeout=10)
+        redirect_url = request.route_url('list')
+        return HTTPFound(location=redirect_url)
 
     else:
 
