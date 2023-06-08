@@ -54,10 +54,10 @@ def read(request):
 
 
 @view_config(
-    route_name='update',
+    route_name='update_or_delete',
     request_method='POST'
 )
-def update(request):
+def update_or_delete(request):
     id_ = request.matchdict["id"]
     url = urljoin(TODO_API_URL + "/", id_)
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         config.add_route('new', '/new')
         config.add_route('create', '/create')
         config.add_route('details', '/details/{id}', request_method='GET')
-        config.add_route('update', '/details/{id}', request_method='POST')
+        config.add_route('update_or_delete', '/details/{id}', request_method='POST')
         config.scan()
         app = config.make_wsgi_app()
 
