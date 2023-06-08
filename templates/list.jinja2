@@ -1,20 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>TODO list</title>
-    </head>
-    <body>
-        <h1>TODO list</h1>
+{% extends "layout.jinja2" %}
 
-        <ul>
-            {% for todo in todos %}
-            <li><a href="{{ request.route_url('details', id=todo.id) }}">{{ todo.title }}</a></li>
-            {% endfor %}
-        </ul>
+{% block title %}TODO list{% endblock %}
 
-        <p>
-            <a href="{{ request.route_url('new') }}">New</a>
-        </p>
-    </body>
-</html>
+{% block style %}
+.done {
+    text-decoration: line-through;
+}
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a
+            href="{{ request.route_url('details', id=todo.id) }}"
+            {% if todo.done %}
+                class="done"
+            {% endif %}
+        >
+            {{ todo.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<p>
+    <a href="{{ request.route_url('new') }}">New</a>
+</p>
+{% endblock %}
