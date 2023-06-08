@@ -93,6 +93,7 @@ if __name__ == '__main__':
         config.add_route('details', '/details/{id}', request_method='GET')
         config.add_route('update_or_delete', '/details/{id}', request_method='POST')
         config.scan()
+        config.add_static_view(name='static', path='web:static')
         app = config.make_wsgi_app()
 
     print(f"Starting web server at http://localhost:{WEB_PORT}")

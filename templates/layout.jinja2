@@ -3,14 +3,35 @@
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ request.static_url('web:static/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ request.static_url('web:static/bootstrap-icons.min.css') }}">
         <style>
+            body {
+                --bs-body-bg-rgb: 13,110,253;
+                --bd-accent-rgb: 255,228,132;
+                --bd-violet-rgb: 112.520718,44.062154,249.437846;
+                --bd-pink-rgb: 214,51,132;
+
+                background-image:
+                    radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),
+                    radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), 0.5), transparent 50%),
+                    radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), 0.5), transparent 50%),
+                    radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), 0.5), transparent 50%);
+                background-attachment: local;
+                background-repeat: no-repeat;
+            }
+
             {% block style %}
             {% endblock %}
         </style>
     </head>
     <body>
-        <h1>{{ self.title() }}</h1>
+        <div class="container">
+            <h1>{{ self.title() }}</h1>
 
-        {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+
+        <script src="{{ request.static_url('web:static/bootstrap.bundle.min.js') }}"></script>
     </body>
 </html>

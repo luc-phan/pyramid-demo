@@ -9,22 +9,26 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-    {% for todo in todos %}
-    <li>
-        <a
-            href="{{ request.route_url('details', id=todo.id) }}"
-            {% if todo.done %}
-                class="done"
-            {% endif %}
-        >
-            {{ todo.title }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+<p>
+    <ul class="list-group">
+        {% for todo in todos %}
+        <li class="list-group-item">
+            <a
+                href="{{ request.route_url('details', id=todo.id) }}"
+                {% if todo.done %}
+                    class="link-primary done"
+                {% else %}
+                    class="link-primary"
+                {% endif %}
+            >
+                {{ todo.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</p>
 
 <p>
-    <a href="{{ request.route_url('new') }}">New</a>
+    <a href="{{ request.route_url('new') }}" class="btn btn-success"><i class="bi bi-plus-square-dotted"></i> New</a>
 </p>
 {% endblock %}

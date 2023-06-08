@@ -18,29 +18,28 @@ label, input {
 
 {% block content %}
 <form method="POST">
-    <div>
-        <label for="id">ID:</label>
-        <input type="text" name="id" id="id" value="{{ id }}" disabled/>
-    </div>
+    <dl>
+        <dt><label for="id">ID</label></dt>
+        <dd><input type="text" name="id" id="id" value="{{ id }}" disabled/></dd>
 
-    <div>
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" value="{{ title }}"/>
-    </div>
+        <dt><label for="title">Title</label></dt>
+        <dd><input type="text" name="title" id="title" value="{{ title }}"/></dd>
 
-    <div>
-        <label for="created_at">Created at:</label>
-        <input type="text" name="created_at" id="created_at" value="{{ created_at }}"/>
-    </div>
+        <dt><label for="created_at">Created at</label></dt>
+        <dd><input type="text" name="created_at" id="created_at" value="{{ created_at }}"/></dd>
 
-    <div>
-        <label for="done">Done:</label>
-        <input type="checkbox" name="done" id="done" {% if done %}checked{% endif %}/>
-    </div>
+        <dt><label for="done">Done</label></dt>
+        <dd><input type="checkbox" name="done" id="done" {% if done %}checked{% endif %}/></dd>
+    </dl>
 
     <p>
-        <input type="submit" name="update" value="Update"/>
-        <input type="submit" name="delete" value="Delete"/>
+        <button type="submit" name="update" value="Update" class="btn btn-primary">
+            <i class="bi bi-cloud-upload"></i> Update
+        </button>
+
+        <button type="submit" name="delete" value="Delete" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Delete
+        </button>
     </p>
 </form>
 
