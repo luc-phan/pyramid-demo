@@ -14,9 +14,50 @@ This is a demo using:
 - SQLAlchemy
 - Alembic
 - Pyramid
+- Docker
+
+This is a demo. Do not use in production.
 
 Usage
 -----
+
+### Run with docker
+
+Go inside docker directory:
+
+```
+$ cd docker
+```
+
+Customize host ports:
+
+```
+$ cp .env.example .env
+$ vim .env
+```
+
+Run with docker-compose:
+
+```
+$ docker-compose up
+```
+
+Open with a web browser:
+
+- http://localhost:8001/docs
+- http://localhost:8001/redoc
+- http://localhost:6543
+
+Develop
+-------
+
+### Setup
+
+Go inside source directory:
+
+```
+$ cd src
+```
 
 Configure application:
 
@@ -52,18 +93,22 @@ $ python api.py
 In another terminal, start web server:
 
 ```
+$ cd src
 $ poetry shell
 $ python web.py
 ```
+
+Open with a web browser:
+
+- http://localhost:8001/docs
+- http://localhost:8001/redoc
+- http://localhost:6543
 
 Exit virtual environment:
 
 ```
 $ exit
 ```
-
-Develop
--------
 
 ### Inspect database
 
@@ -88,4 +133,4 @@ $ alembic upgrade head
 TODO
 ----
 
-- Add `docker-compose.yml`.
+- ~~Add `docker-compose.yml`.~~
