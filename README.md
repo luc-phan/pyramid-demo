@@ -130,6 +130,70 @@ $ alembic revision --autogenerate -m "Message"
 $ alembic upgrade head
 ```
 
+Deploy on AWS
+-------------
+
+Why are you reading this? It's not production-ready!
+
+### Create a demo user
+
+Create an access key for an admin user **who can manage IAM** (could be dangerous!):
+
+![AWS access key](images/aws-access-key.png)
+
+Authenticate with `aws-cli`:
+
+```
+$ aws configure
+```
+
+Create demo user:
+
+```
+$ cd terraform/create_demo_user
+$ terraform apply
+```
+
+Get secret key:
+
+```
+$ vim terraform.tfstate
+```
+
+Authenticate with demo user:
+
+```
+$ aws configure --profile demo_user
+```
+
+Assume demo role:
+
+```
+$ export AWS_ACCOUNT=123456789012  # replace with account id
+$ aws --profile demo_user sts assume-role --role-arn arn:aws:iam::
+$AWS_ACCOUNT:role/demo-role --role-session-name demo-session
+```
+
+Authenticate with demo role:
+
+```
+$ aws configure --profile demo_role
+```
+
+Fill `aws_session_token`:
+
+```
+$ vim ~/.aws/credentials
+```
+
+Test access to EC2:
+
+```
+$ aws --profile demo_role ec2 describe-instances
+```
+
+*(to be continued...)*
+
 TODO
 ----
 

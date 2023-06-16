@@ -1,4 +1,9 @@
-__pycache__
 /src/.env
 /src/todo.db
+__pycache__
+
 /docker/.env
+
+.terraform
+*.tfstate
+*.tfstate.*
