@@ -15,6 +15,8 @@ This is a demo using:
 - Alembic
 - Pyramid
 - Docker
+- AWS
+- Terraform
 
 This is a demo. Do not use in production.
 
@@ -170,8 +172,7 @@ Assume demo role:
 
 ```
 $ export AWS_ACCOUNT=123456789012  # replace with account id
-$ aws --profile demo_user sts assume-role --role-arn arn:aws:iam::
-$AWS_ACCOUNT:role/demo-role --role-session-name demo-session
+$ aws --profile demo_user sts assume-role --role-arn arn:aws:iam::$AWS_ACCOUNT:role/demo-role --role-session-name demo-session
 ```
 
 Authenticate with demo role:
