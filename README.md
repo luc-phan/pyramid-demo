@@ -17,6 +17,7 @@ This is a demo using:
 - Docker
 - AWS
 - Terraform
+- Packer
 
 This is a demo. Do not use in production.
 
@@ -137,7 +138,7 @@ Deploy on AWS
 
 Why are you reading this? It's not production-ready!
 
-### Create a demo user
+### Create IAM user
 
 Create an access key for an admin user **who can manage IAM** (could be dangerous!):
 
@@ -193,9 +194,11 @@ Test access to EC2:
 $ aws --profile demo_role ec2 describe-instances
 ```
 
+### Create AMI
+
+```
+$ cd packer
+$ packer build demo.pkr.hcl
+```
+
 *(to be continued...)*
-
-TODO
-----
-
-- ~~Add `docker-compose.yml`.~~
