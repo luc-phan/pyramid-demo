@@ -9,9 +9,10 @@ packer {
 
 source "amazon-ebs" "ubuntu" {
   profile       = "demo_role"
-  ami_name      = "ubuntu"
+  ami_name      = "demo-ami"
   instance_type = "t2.micro"
   region        = "eu-west-3"
+
   source_ami_filter {
     filters = {
       name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20230516"
@@ -21,7 +22,12 @@ source "amazon-ebs" "ubuntu" {
     most_recent = true
     owners      = ["099720109477"]
   }
+
   ssh_username = "ubuntu"
+
+  tags = {
+    Name = "demo-image"
+  }
 }
 
 build {
@@ -29,4 +35,10 @@ build {
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
+
+  provisioner "shell" {
+    inline = [
+      "echo \"Hello world!\"",
+    ]
+  }
 }
