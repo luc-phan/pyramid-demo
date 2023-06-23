@@ -1,0 +1,15 @@
+variable "aws_account" {
+  type = string
+  description = "The AWS account ID"
+  default = "123456789012"
+}
+
+variable "aws_profile" {
+  type = string
+  default = "demo_role"
+}
+
+variable "ami_mask" {
+  type = string
+  default = "demo-ami-*"
+}
