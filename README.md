@@ -210,8 +210,7 @@ $ vim demo.auto.pkrvars.hcl
 ```
 
 ```
-$ cd packer
-$ packer build demo.pkr.hcl
+$ packer build .
 ```
 
 *(to be continued...)*
