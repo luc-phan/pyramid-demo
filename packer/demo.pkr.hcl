@@ -1,3 +1,22 @@
+variable "aws_profile" {
+  type    = string
+  default = "demo_role"
+}
+
+variable "ami_prefix" {
+  type    = string
+  default = "demo-ami"
+}
+
+variable "name_tag" {
+  type    = string
+  default = "demo-image"
+}
+
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 packer {
   required_plugins {
     amazon = {
@@ -8,8 +27,8 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  profile       = "demo_role"
-  ami_name      = "demo-ami"
+  profile       = var.aws_profile
+  ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "eu-west-3"
 
@@ -26,7 +45,7 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = "ubuntu"
 
   tags = {
-    Name = "demo-image"
+    Name = var.name_tag
   }
 }
 

@@ -138,7 +138,7 @@ Deploy on AWS
 
 Why are you reading this? It's not production-ready!
 
-### Create IAM user
+### Create IAM credentials
 
 Create an access key for an admin user **who can manage IAM** (could be dangerous!):
 
@@ -172,7 +172,7 @@ $ aws configure --profile demo_user
 Assume demo role:
 
 ```
-$ export AWS_ACCOUNT=123456789012  # replace with account id
+$ export AWS_ACCOUNT=`aws --profile demo_user sts get-caller-identity --query Account --output text`
 $ aws --profile demo_user sts assume-role --role-arn arn:aws:iam::$AWS_ACCOUNT:role/demo-role --role-session-name demo-session
 ```
 
@@ -195,6 +195,19 @@ $ aws --profile demo_role ec2 describe-instances
 ```
 
 ### Create AMI
+
+Go inside packer directory:
+
+```
+$ cd packer
+```
+
+Customize Packer if needed:
+
+```
+$ cp demo.auto.pkrvars.hcl.example demo.auto.pkrvars.hcl
+$ vim demo.auto.pkrvars.hcl
+```
 
 ```
 $ cd packer
