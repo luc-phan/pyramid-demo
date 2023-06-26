@@ -226,7 +226,7 @@ $ vim variables.tf
 Create VM:
 
 ```
-$ cd terraform/create_instance
+$ cd terraform/create_vm
 $ terraform apply
 ```
 
