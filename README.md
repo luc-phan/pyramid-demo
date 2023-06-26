@@ -153,7 +153,7 @@ $ aws configure
 Create demo user:
 
 ```
-$ cd terraform/create_demo_user
+$ cd terraform/create_credentials
 $ terraform apply
 ```
 
