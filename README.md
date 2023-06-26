@@ -15,7 +15,7 @@ This is a demo using:
 - Alembic
 - Pyramid
 - Docker
-- AWS
+- AWS (IAM, EC2)
 - Terraform
 - Packer
 
@@ -213,4 +213,26 @@ $ vim demo.auto.pkrvars.hcl
 $ packer build .
 ```
 
+### Create VM
+
+Customize variable if needed:
+
+```
+$ cd terraform/common
+$ cp variables.tf.example variables.tf
+$ vim variables.tf
+```
+
+Create VM:
+
+```
+$ cd terraform/create_instance
+$ terraform apply
+```
+
 *(to be continued...)*
+
+TODO
+----
+
+- Put all Terraform variables in `terraform/common`
