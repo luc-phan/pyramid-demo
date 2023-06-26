@@ -4,10 +4,10 @@ variable "aws_account" {
   default = "123456789012"
 }
 
-variable "ssh_source_cidr" {
-  type = string
-  description = "Allow SSH from this CIDR only"
-  default = "1.2.3.4/32"
+variable "ssh_source_cidr_blocks" {
+  type = list(string)
+  description = "Allow SSH from these CIDRs only"
+  default = ["1.2.3.4/32"]
 }
 
 variable "aws_profile" {

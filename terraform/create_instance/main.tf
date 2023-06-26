@@ -93,7 +93,7 @@ resource "aws_security_group" "demo" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [module.common.ssh_source_cidr]
+    cidr_blocks = module.common.ssh_source_cidr_blocks
   }
 
   egress {
