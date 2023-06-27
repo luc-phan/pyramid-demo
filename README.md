@@ -259,4 +259,4 @@ $ exit
 TODO
 ----
 
-- Put all Terraform variables in `terraform/common`
+- ~~Put all Terraform variables in `terraform/common`~~
