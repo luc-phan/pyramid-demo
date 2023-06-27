@@ -10,6 +10,10 @@ output "awscli_admin_profile" {
   value = var.awscli_admin_profile
 }
 
+output "awscli_ec2_profile" {
+  value = var.awscli_ec2_profile
+}
+
 output "aws_demo_username" {
   value = var.aws_demo_username
 }
@@ -26,12 +30,12 @@ output "aws_demo_attachment_name" {
   value = var.aws_demo_attachment_name
 }
 
-output "ssh_source_cidr_blocks" {
-  value = var.ssh_source_cidr_blocks
+output "aws_instance_name" {
+  value = var.aws_instance_name
 }
 
-output "aws_profile" {
-  value = var.aws_profile
+output "ssh_source_cidr_blocks" {
+  value = var.ssh_source_cidr_blocks
 }
 
 output "ami_mask" {

@@ -14,6 +14,11 @@ variable "awscli_admin_profile" {
   default = "admin"
 }
 
+variable "awscli_ec2_profile" {
+  type = string
+  default = "default"
+}
+
 variable "aws_demo_username" {
   type    = string
   default = "demo-user"
@@ -34,15 +39,15 @@ variable "aws_demo_attachment_name" {
   default = "demo-attachment"
 }
 
+variable "aws_instance_name" {
+  type    = string
+  default = "demo-instance"
+}
+
 variable "ssh_source_cidr_blocks" {
   type = list(string)
   description = "Allow SSH from these CIDRs only"
   default = ["1.2.3.4/32"]
-}
-
-variable "aws_profile" {
-  type = string
-  default = "demo_role"
 }
 
 variable "ami_mask" {

@@ -2,16 +2,6 @@ module "common" {
   source = "../common"
 }
 
-variable "region" {
-  type    = string
-  default = "eu-west-3"
-}
-
-variable "instance_name" {
-  type    = string
-  default = "demo-instance"
-}
-
 terraform {
   required_providers {
     aws = {
@@ -24,8 +14,8 @@ terraform {
 }
 
 provider "aws" {
-  profile = module.common.aws_profile
-  region  = var.region
+  profile = module.common.awscli_ec2_profile
+  region  = module.common.aws_region
 }
 
 data "aws_ami" "demo" {
@@ -53,15 +43,6 @@ resource "aws_subnet" "demo" {
   map_public_ip_on_launch = true
 }
 
-# resource "aws_route_table" "demo" {
-#   vpc_id = aws_vpc.demo.id
-# }
-
-# resource "aws_route_table_association" "demo" {
-#   subnet_id      = aws_subnet.demo.id
-#   route_table_id = aws_route_table.demo.id
-# }
-
 resource "aws_internet_gateway" "demo" {
   vpc_id = aws_vpc.demo.id
 
@@ -69,12 +50,6 @@ resource "aws_internet_gateway" "demo" {
     Name = "Demo Internet Gateway"
   }
 }
-
-# resource "aws_route" "demo" {
-#   route_table_id         = aws_route_table.demo.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   gateway_id             = aws_internet_gateway.demo.id
-# }
 
 resource "aws_default_route_table" "demo" {
   default_route_table_id = aws_vpc.demo.default_route_table_id
@@ -111,6 +86,6 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [aws_security_group.demo.id]
 
   tags = {
-    Name = var.instance_name
+    Name = module.common.aws_instance_name
   }
 }

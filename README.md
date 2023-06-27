@@ -226,6 +226,7 @@ $ vim demo.auto.pkrvars.hcl
 
 ```
 $ packer build .
+$ aws ec2 describe-images --owner self --query Images[].[Name,ImageId] --output table
 ```
 
 ### Create VM
