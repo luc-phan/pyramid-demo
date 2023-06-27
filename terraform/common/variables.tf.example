@@ -54,3 +54,8 @@ variable "ami_mask" {
   type = string
   default = "demo-ami-*"
 }
+
+variable "demo_key_pair" {
+  type = string
+  default = "ssh-rsa 0123456789ABCDEF user@computer"
+}

@@ -79,11 +79,17 @@ resource "aws_security_group" "demo" {
   }
 }
 
+resource "aws_key_pair" "demo" {
+  key_name   = "demo"
+  public_key = module.common.demo_key_pair
+}
+
 resource "aws_instance" "app_server" {
   ami                    = data.aws_ami.demo.id
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.demo.id
   vpc_security_group_ids = [aws_security_group.demo.id]
+  key_name               = "demo"
 
   tags = {
     Name = module.common.aws_instance_name

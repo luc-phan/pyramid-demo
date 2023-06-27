@@ -246,6 +246,14 @@ $ cd terraform/create_vm
 $ terraform apply
 ```
 
+Connect to VM:
+
+```
+$ export INSTANCE_IP=`jq .outputs.instance_public_ip.value terraform.tfstate -r`
+$ ssh ubuntu@$INSTANCE_IP
+$ exit
+```
+
 *(to be continued...)*
 
 TODO

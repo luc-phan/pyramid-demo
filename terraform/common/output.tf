@@ -41,3 +41,7 @@ output "ssh_source_cidr_blocks" {
 output "ami_mask" {
   value = var.ami_mask
 }
+
+output "demo_key_pair" {
+  value = var.demo_key_pair
+}
