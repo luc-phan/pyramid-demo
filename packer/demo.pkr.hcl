@@ -1,6 +1,6 @@
-variable "aws_profile" {
+variable "awscli_profile" {
   type    = string
-  default = "demo_role"
+  default = "default"
 }
 
 variable "ami_prefix" {
@@ -27,7 +27,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  profile       = var.aws_profile
+  profile       = var.awscli_profile
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "eu-west-3"

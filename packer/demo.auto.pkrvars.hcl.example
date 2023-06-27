@@ -1,3 +1,3 @@
-aws_profile = "demo_role"
+aws_profile = "default"
 ami_prefix = "demo-ami"
 name_tag = "demo-image"
