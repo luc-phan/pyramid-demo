@@ -147,10 +147,18 @@ Create an access key for an admin user **who can manage IAM** (could be dangerou
 Authenticate with `aws-cli`:
 
 ```
-$ aws configure
+$ aws configure --profile admin
 ```
 
-Create demo user:
+Customize variables if needed:
+
+```
+$ cd terraform/common
+$ cp variables.tf.example variables.tf
+$ vim variables.tf
+```
+
+Create credentials:
 
 ```
 $ cd terraform/create_credentials
@@ -176,10 +184,10 @@ $ export AWS_ACCOUNT=`aws --profile demo_user sts get-caller-identity --query Ac
 $ aws --profile demo_user sts assume-role --role-arn arn:aws:iam::$AWS_ACCOUNT:role/demo-role --role-session-name demo-session
 ```
 
-Authenticate with demo role:
+Authenticate with demo session:
 
 ```
-$ aws configure --profile demo_role
+$ aws configure
 ```
 
 Fill `aws_session_token`:
@@ -191,7 +199,14 @@ $ vim ~/.aws/credentials
 Test access to EC2:
 
 ```
-$ aws --profile demo_role ec2 describe-instances
+$ aws ec2 describe-instances
+```
+
+(Optional) Delete `admin` and `demo_user` profiles:
+
+```
+$ vim ~/.aws/config
+$ vim ~/.aws/credentials
 ```
 
 ### Create AMI
@@ -215,7 +230,7 @@ $ packer build .
 
 ### Create VM
 
-Customize variable if needed:
+Customize variables if needed:
 
 ```
 $ cd terraform/common

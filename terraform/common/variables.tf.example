@@ -4,6 +4,36 @@ variable "aws_account" {
   default = "123456789012"
 }
 
+variable "aws_region" {
+  type    = string
+  default = "eu-west-3"
+}
+
+variable "awscli_admin_profile" {
+  type = string
+  default = "admin"
+}
+
+variable "aws_demo_username" {
+  type    = string
+  default = "demo-user"
+}
+
+variable "aws_role_name" {
+  type    = string
+  default = "demo-role"
+}
+
+variable "aws_policy_name" {
+  type    = string
+  default = "demo-policy"
+}
+
+variable "aws_demo_attachment_name" {
+  type    = string
+  default = "demo-attachment"
+}
+
 variable "ssh_source_cidr_blocks" {
   type = list(string)
   description = "Allow SSH from these CIDRs only"
