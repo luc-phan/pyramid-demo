@@ -51,13 +51,31 @@ source "amazon-ebs" "ubuntu" {
 
 build {
   name = "demo"
+
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
 
+  provisioner "file" {
+    destination = "/tmp/docker-bootstrap.sh"
+    source      = "./files/docker-bootstrap.sh"
+  }
+
+  provisioner "file" {
+    destination = "/tmp/demo-app.service"
+    source      = "./files/demo-app.service"
+  }
+
   provisioner "shell" {
     inline = [
-      "echo \"Hello world!\"",
+      "sleep 60",
+      ". /tmp/docker-bootstrap.sh",
+      "git clone https://github.com/luc-phan/pyramid-demo.git",
+      "cd pyramid-demo/docker",
+      "cp .env.example .env",
+      "sg docker 'docker-compose build'",
+      "sudo mv /tmp/demo-app.service /etc/systemd/system/demo-app.service",
+      "sudo systemctl enable demo-app"
     ]
   }
 }

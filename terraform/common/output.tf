@@ -34,12 +34,16 @@ output "aws_instance_name" {
   value = var.aws_instance_name
 }
 
-output "ssh_source_cidr_blocks" {
-  value = var.ssh_source_cidr_blocks
-}
-
 output "ami_mask" {
   value = var.ami_mask
+}
+
+output "ingress_ports" {
+  value = var.ingress_ports
+}
+
+output "cidrs_allowed" {
+  value = var.cidrs_allowed
 }
 
 output "demo_key_pair" {

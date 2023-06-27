@@ -44,15 +44,20 @@ variable "aws_instance_name" {
   default = "demo-instance"
 }
 
-variable "ssh_source_cidr_blocks" {
-  type = list(string)
-  description = "Allow SSH from these CIDRs only"
-  default = ["1.2.3.4/32"]
-}
-
 variable "ami_mask" {
   type = string
   default = "demo-ami-*"
+}
+
+variable "ingress_ports" {
+  type = list
+  default = [22, 8001, 6543]
+}
+
+variable "cidrs_allowed" {
+  type = list(string)
+  description = "Allow these CIDRs only"
+  default = ["1.2.3.4/32"]
 }
 
 variable "demo_key_pair" {

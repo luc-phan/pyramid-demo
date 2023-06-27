@@ -64,11 +64,14 @@ resource "aws_security_group" "demo" {
   name   = "demo-security-group"
   vpc_id = aws_vpc.demo.id
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = module.common.ssh_source_cidr_blocks
+  dynamic "ingress" {
+    for_each = module.common.ingress_ports
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = module.common.cidrs_allowed
+    }
   }
 
   egress {
