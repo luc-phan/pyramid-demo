@@ -256,9 +256,9 @@ $ exit
 
 Open with a web browser (IP address probably different):
 
-http://35.181.57.31:8001/docs
-http://35.181.57.31:8001/redoc
-http://35.181.57.31:6543/
+- http://35.181.57.31:8001/docs
+- http://35.181.57.31:8001/redoc
+- http://35.181.57.31:6543/
 
 *(to be continued...)*
 
