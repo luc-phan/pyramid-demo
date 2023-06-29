@@ -161,7 +161,7 @@ $ vim variables.tf
 Create credentials:
 
 ```
-$ cd terraform/create_credentials
+$ cd terraform/credentials
 $ terraform apply
 ```
 
@@ -229,7 +229,7 @@ $ packer build .
 $ aws ec2 describe-images --owner self --query Images[].[Name,ImageId] --output table
 ```
 
-### Create VM
+### Deploy
 
 Customize variables if needed:
 
@@ -242,7 +242,7 @@ $ vim variables.tf
 Create VM:
 
 ```
-$ cd terraform/create_vm
+$ cd terraform/deploy
 $ terraform apply
 ```
 
@@ -270,8 +270,8 @@ Cleanup
 Destroy everything on AWS:
 
 ```
-$ cd terraform/create_vm
+$ cd terraform/deploy
 $ terraform destroy
-$ cd ../create_credentials
+$ cd ../credentials
 $ terraform destroy
 ```
