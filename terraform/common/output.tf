@@ -49,3 +49,7 @@ output "cidrs_allowed" {
 output "demo_key_pair" {
   value = var.demo_key_pair
 }
+
+output "domain" {
+  value = var.domain
+}

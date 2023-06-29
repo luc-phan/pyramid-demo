@@ -64,3 +64,8 @@ variable "demo_key_pair" {
   type = string
   default = "ssh-rsa 0123456789ABCDEF user@computer"
 }
+
+variable "domain" {
+  type = string
+  default = "demo.example.com"
+}

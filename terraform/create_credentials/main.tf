@@ -59,7 +59,8 @@ resource "aws_iam_policy" "demo_policy" {
       {
         Effect = "Allow"
         Action = [
-          "ec2:*"
+          "ec2:*",
+          "route53:*"
         ]
         Resource = "*"
       }

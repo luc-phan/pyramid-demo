@@ -87,7 +87,7 @@ resource "aws_key_pair" "demo" {
   public_key = module.common.demo_key_pair
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "demo" {
   ami                    = data.aws_ami.demo.id
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.demo.id
@@ -97,4 +97,16 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = module.common.aws_instance_name
   }
+}
+
+resource "aws_route53_zone" "demo" {
+  name = module.common.domain
+}
+
+resource "aws_route53_record" "demo" {
+  zone_id = aws_route53_zone.demo.zone_id
+  name    = ""
+  type    = "A"
+  ttl     = "300"
+  records = [aws_instance.demo.public_ip]
 }

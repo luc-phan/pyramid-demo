@@ -15,7 +15,7 @@ This is a demo using:
 - Alembic
 - Pyramid
 - Docker
-- AWS (IAM, EC2)
+- AWS (IAM, EC2, Route53)
 - Terraform
 - Packer
 
@@ -246,7 +246,9 @@ $ cd terraform/create_vm
 $ terraform apply
 ```
 
-Connect to VM:
+Replace the DNS of your domain (or subdomain) with the ones outputted by Terraform.
+
+Test SSH to VM:
 
 ```
 $ export INSTANCE_IP=`jq .outputs.instance_public_ip.value terraform.tfstate -r`
@@ -254,15 +256,22 @@ $ ssh ubuntu@$INSTANCE_IP
 $ exit
 ```
 
-Open with a web browser (IP address probably different):
+When the DNS zone is propagated, open with a web browser (domain probably different):
 
-- http://35.181.57.31:8001/docs
-- http://35.181.57.31:8001/redoc
-- http://35.181.57.31:6543/
+- http://demo.example.com:8001/docs
+- http://demo.example.com:8001/redoc
+- http://demo.example.com:6543/
 
 *(to be continued...)*
 
-TODO
-----
+Cleanup
+-------
 
-- ~~Put all Terraform variables in `terraform/common`~~
+Destroy everything on AWS:
+
+```
+$ cd terraform/create_vm
+$ terraform destroy
+$ cd ../create_credentials
+$ terraform destroy
+```
